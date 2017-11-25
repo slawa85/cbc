@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path('../boot', __FILE__)
 
 require "rails"
@@ -31,5 +33,15 @@ module CbcTest
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Custom directories with classes and modules you want to be autoloadable.
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/lib)
+
+    # Use custom defined error pages
+    config.exceptions_app = self.routes
+
+    config.generators do |generate|
+      generate.test_framework :rspec, views: false, fixture: true
+    end
   end
 end
