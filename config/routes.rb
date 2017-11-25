@@ -2,9 +2,12 @@
 
 Rails.application.routes.draw do
   namespace :v1, defaults: { format: :json }, path: 'v1' do
-    devise_for :users
+    devise_for :users, only: :sessions, skip_helpers: true, format: false
     resources :locations, only: [:show], param: :country_code
     resources :target_groups, only: [:show], param: :country_code
+  end
+
+  authenticate do
     resources :evaluate_target, only: [:create]
   end
 

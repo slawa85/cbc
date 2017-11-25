@@ -8,15 +8,18 @@ gem 'rails-api'
 gem 'puma', '~> 3.7'
 
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 0.20.0'
 
 gem 'acts_as_api'
 gem 'devise'
 gem 'devise-jwt', '~> 0.3.0'
+gem 'http-accept'
 
 group :development, :test do
   gem 'pry'
   gem 'pry-rails'
+  # pry dependencies
+  gem 'rb-readline'
   gem 'rubocop', require: false
 end
 
