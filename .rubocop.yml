@@ -1,0 +1,137 @@
+AllCops:
+  TargetRubyVersion: 2.1.10
+  TargetRailsVersion: 4.2.10
+  Exclude:
+    - db/schema.rb
+    - bin/*
+    - db/**
+    - config/**
+    - script/**
+  Includes:
+    - Rakefile
+    - config.ru
+  Documentation:
+    Enabled: false
+
+
+Rails:
+  Enabled: true
+
+AbcSize:
+  Enabled: false
+
+AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+AsciiComments:
+  Enabled: false
+
+BlockNesting:
+  Enabled: false
+
+CaseEquality:
+  Enabled: false
+
+CharacterLiteral:
+  Enabled: false
+
+ClassLength:
+  Enabled: false
+
+CollectionMethods:
+  Enabled: true
+
+CommentAnnotation:
+  Enabled: false
+
+CyclomaticComplexity:
+  Enabled: false
+
+Delegate:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+DotPosition:
+  EnforcedStyle: trailing
+
+DoubleNegation:
+  Enabled: false
+
+EmptyLiteral:
+  Enabled: false
+
+FileName:
+  Enabled: false
+
+FlipFlop:
+  Enabled: false
+
+FormatString:
+  Enabled: true
+  EnforcedStyle: percent
+
+GuardClause:
+  Enabled: false
+
+IfUnlessModifier:
+  Enabled: false
+
+LineLength:
+  Max: 120
+
+MethodCalledOnDoEndBlock:
+  Enabled: true
+
+MethodLength:
+  Enabled: false
+
+ParameterLists:
+  Enabled: false
+
+PercentLiteralDelimiters:
+  Enabled: false
+
+PerlBackrefs:
+  Enabled: false
+
+PredicateName:
+  NamePrefixBlacklist:
+    - is_
+
+SingleLineMethods:
+  Enabled: false
+
+SignalException:
+  Enabled: false
+
+# Lint
+
+AmbiguousOperator:
+  Enabled: false
+
+AmbiguousRegexpLiteral:
+  Enabled: false
+
+AssignmentInCondition:
+  Enabled: false
+
+DeprecatedClassMethods:
+  Enabled: false
+
+ElseLayout:
+  Enabled: false
+
+HandleExceptions:
+  Enabled: false
+
+ParenthesesAsGroupedExpression:
+  Enabled: false
+
+UnderscorePrefixedVariableName:
+  Enabled: false
+
+NumericPredicate:
+  EnforcedStyle: comparison
