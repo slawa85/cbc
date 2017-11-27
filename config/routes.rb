@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  namespace :v1, defaults: { format: :json }, path: 'v1' do
+  scope :v1 do
     devise_for :users, only: :sessions, skip_helpers: true, format: false
+  end
+
+  namespace :v1, defaults: { format: :json }, path: 'v1' do
     resources :locations, only: [:show], param: :country_code
     resources :target_groups, only: [:show], param: :country_code
   end

@@ -11,10 +11,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125171636) do
+ActiveRecord::Schema.define(version: 20171130100136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "country_code"
+    t.integer  "panel_provider_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "countries", ["panel_provider_id"], name: "index_countries_on_panel_provider_id", using: :btree
+
+  create_table "geo_targetings", force: :cascade do |t|
+    t.integer  "country_id"
+    t.integer  "target_group_id"
+    t.boolean  "target_group_root"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "geo_targetings", ["country_id"], name: "index_geo_targetings_on_country_id", using: :btree
+  add_index "geo_targetings", ["target_group_id"], name: "index_geo_targetings_on_target_group_id", using: :btree
+
+  create_table "location_groups", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "country_id"
+    t.integer  "panel_provider_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "location_groups", ["country_id"], name: "index_location_groups_on_country_id", using: :btree
+  add_index "location_groups", ["panel_provider_id"], name: "index_location_groups_on_panel_provider_id", using: :btree
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "secret_code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "locations_locations_group", id: false, force: :cascade do |t|
+    t.integer "location_id"
+    t.integer "location_group_id"
+  end
+
+  add_index "locations_locations_group", ["location_group_id"], name: "index_locations_locations_group_on_location_group_id", using: :btree
+  add_index "locations_locations_group", ["location_id"], name: "index_locations_locations_group_on_location_id", using: :btree
+
+  create_table "panel_providers", force: :cascade do |t|
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "target_groups", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "external_id"
+    t.integer  "parent_id"
+    t.string   "secret_code"
+    t.integer  "panel_provider_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "target_groups", ["external_id"], name: "index_target_groups_on_external_id", using: :btree
+  add_index "target_groups", ["panel_provider_id"], name: "index_target_groups_on_panel_provider_id", using: :btree
+  add_index "target_groups", ["parent_id"], name: "index_target_groups_on_parent_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -34,4 +100,12 @@ ActiveRecord::Schema.define(version: 20171125171636) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "countries", "panel_providers"
+  add_foreign_key "geo_targetings", "countries"
+  add_foreign_key "geo_targetings", "target_groups"
+  add_foreign_key "location_groups", "countries"
+  add_foreign_key "location_groups", "panel_providers"
+  add_foreign_key "locations_locations_group", "location_groups"
+  add_foreign_key "locations_locations_group", "locations"
+  add_foreign_key "target_groups", "panel_providers"
 end

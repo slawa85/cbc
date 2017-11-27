@@ -41,7 +41,7 @@ module CbcTest
     config.exceptions_app = self.routes
 
     config.generators do |generate|
-      generate.test_framework :rspec, views: false, fixture: true
+      generate.test_framework :rspec, views: false, fixture: false
     end
   end
 end
