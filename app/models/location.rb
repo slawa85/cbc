@@ -1,3 +1,4 @@
 class Location < ActiveRecord::Base
-  has_and_belongs_to_many :location_groups
+  has_many :memberships
+  has_many :location_groups, through: :memberships
 end

@@ -4,8 +4,6 @@ class CreateGeoTargetings < ActiveRecord::Migration
       t.references :country, index: true, foreign_key: true
       t.references :target_group, index: true, foreign_key: true
       t.boolean :target_group_root
-
-      t.timestamps null: false
     end
   end
 end

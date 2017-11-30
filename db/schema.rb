@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130100136) do
+ActiveRecord::Schema.define(version: 20171130133013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "countries", force: :cascade do |t|
-    t.string   "country_code"
+    t.string   "code"
     t.integer  "panel_provider_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
@@ -54,13 +54,15 @@ ActiveRecord::Schema.define(version: 20171130100136) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "locations_locations_group", id: false, force: :cascade do |t|
-    t.integer "location_id"
-    t.integer "location_group_id"
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "location_id"
+    t.integer  "location_group_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
-  add_index "locations_locations_group", ["location_group_id"], name: "index_locations_locations_group_on_location_group_id", using: :btree
-  add_index "locations_locations_group", ["location_id"], name: "index_locations_locations_group_on_location_id", using: :btree
+  add_index "memberships", ["location_group_id"], name: "index_memberships_on_location_group_id", using: :btree
+  add_index "memberships", ["location_id"], name: "index_memberships_on_location_id", using: :btree
 
   create_table "panel_providers", force: :cascade do |t|
     t.string   "code"
@@ -70,7 +72,6 @@ ActiveRecord::Schema.define(version: 20171130100136) do
 
   create_table "target_groups", force: :cascade do |t|
     t.string   "name"
-    t.integer  "external_id"
     t.integer  "parent_id"
     t.string   "secret_code"
     t.integer  "panel_provider_id"
@@ -78,7 +79,6 @@ ActiveRecord::Schema.define(version: 20171130100136) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "target_groups", ["external_id"], name: "index_target_groups_on_external_id", using: :btree
   add_index "target_groups", ["panel_provider_id"], name: "index_target_groups_on_panel_provider_id", using: :btree
   add_index "target_groups", ["parent_id"], name: "index_target_groups_on_parent_id", using: :btree
 
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20171130100136) do
   add_foreign_key "geo_targetings", "target_groups"
   add_foreign_key "location_groups", "countries"
   add_foreign_key "location_groups", "panel_providers"
-  add_foreign_key "locations_locations_group", "location_groups"
-  add_foreign_key "locations_locations_group", "locations"
+  add_foreign_key "memberships", "location_groups"
+  add_foreign_key "memberships", "locations"
   add_foreign_key "target_groups", "panel_providers"
 end
