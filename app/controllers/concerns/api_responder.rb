@@ -6,7 +6,7 @@ module ApiResponder
 
   def self.included(base)
     base.respond_to :json
-    base.responder = ActsAsApi::Rendering
+    base.responder = ActsAsApi::Responder
   end
 
   private

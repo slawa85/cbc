@@ -14,6 +14,10 @@ gem 'acts_as_api'
 gem 'devise'
 gem 'devise-jwt', '~> 0.3.0'
 gem 'http-accept'
+gem 'dry-logic', '0.2.1'
+gem 'dry-validation', '0.7.1'
+gem 'nokogiri'
+gem 'sanitize'
 
 group :development, :test do
   gem 'pry'

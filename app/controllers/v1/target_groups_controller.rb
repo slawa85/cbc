@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
 module V1
-  class LocationsController < ::ApplicationController
+  class TargetGroupsController < ::ApplicationController
     before_action :validate_params
     before_action :fetch_country
 
     def show
-      respond_with @country
-    rescue Parser::Error
-      msg = 'Unable to calculate price, please try again later'
-      respond_with_error msg: msg, status: 400
+
     end
 
     private

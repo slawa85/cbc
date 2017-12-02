@@ -1,4 +1,4 @@
-class TargetGroup < ActiveRecord::Base
+class TargetGroup < AbstractModel
   belongs_to :panel_provider
   belongs_to :parent_group, class_name: 'TargetGroup', foreign_key: 'parent_id'
   has_many :sub_groups, class_name: 'TargetGroup', foreign_key: 'parent_id', dependent: :destroy
@@ -7,5 +7,9 @@ class TargetGroup < ActiveRecord::Base
 
   accepts_nested_attributes_for :sub_groups, allow_destroy: true
 
-  scope :root_targets, ->{ where(parent_id: 0) }
+  api_accessible :v1_default do |t|
+    t.add :id
+    t.add :name
+  end
+
 end

@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::API
   include ApiResponder
 
+  before_action :validate_accept_header_structure
   before_action :validate_accept_header_format
   before_action :validate_media_type, unless: -> { request.get? }
 
@@ -12,7 +13,7 @@ class ApplicationController < ActionController::API
 
   private
 
-  def validate_accept_header_format
+  def validate_accept_header_structure
     begin
       media_types
     rescue HTTP::Accept::ParseError
@@ -21,8 +22,14 @@ class ApplicationController < ActionController::API
     end
   end
 
+  def validate_accept_header_format
+    if !request.headers['Accept'].include?('application/vnd.api.v1+json')
+      msg = "Accept header does not include 'application/vnd.api.v1+json'"
+      respond_with_error msg: msg, status: 415
+    end
+  end
+
   def validate_media_type
-    binding.pry
     if request.headers['Content-Type'] != 'application/vnd.api+json'
       msg = "Content-Type header set to 'application/vnd.api+json' required"
       respond_with_error msg: msg, status: 415

@@ -56,9 +56,15 @@ data = [
   }
 ]
 
+panels = [
+  { code: 'Panel 1', parser: 'letters' },
+  { code: 'Panel 2', parser: 'arrays' },
+  { code: 'Panel 3', parser: 'html_nodes' }
+]
+PanelProvider.create!(panels)
+
 1.upto(3) do |i|
   User.create(email: "demo#{i}@test.com", password: "p@ssword#{i}" )
-  PanelProvider.find_or_create_by(code: "Panel #{i}")
 end
 
 Country.create!(data)

@@ -26,11 +26,9 @@ ActiveRecord::Schema.define(version: 20171130133013) do
   add_index "countries", ["panel_provider_id"], name: "index_countries_on_panel_provider_id", using: :btree
 
   create_table "geo_targetings", force: :cascade do |t|
-    t.integer  "country_id"
-    t.integer  "target_group_id"
-    t.boolean  "target_group_root"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer "country_id"
+    t.integer "target_group_id"
+    t.boolean "target_group_root"
   end
 
   add_index "geo_targetings", ["country_id"], name: "index_geo_targetings_on_country_id", using: :btree
@@ -55,10 +53,8 @@ ActiveRecord::Schema.define(version: 20171130133013) do
   end
 
   create_table "memberships", force: :cascade do |t|
-    t.integer  "location_id"
-    t.integer  "location_group_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer "location_id"
+    t.integer "location_group_id"
   end
 
   add_index "memberships", ["location_group_id"], name: "index_memberships_on_location_group_id", using: :btree
@@ -66,6 +62,7 @@ ActiveRecord::Schema.define(version: 20171130133013) do
 
   create_table "panel_providers", force: :cascade do |t|
     t.string   "code"
+    t.string   "parser"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

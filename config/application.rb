@@ -35,7 +35,11 @@ module CbcTest
     config.active_record.raise_in_transactional_callbacks = true
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/lib)
+    config.autoload_paths += %W(
+                                #{config.root}/lib
+                                #{config.root}/app/lib
+                                #{config.root}/app/parsers
+                              )
 
     # Use custom defined error pages
     config.exceptions_app = self.routes
