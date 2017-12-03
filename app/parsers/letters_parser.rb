@@ -2,7 +2,7 @@ class LettersParser < Parser
   SOURCE_URL = 'http://time.com/'
 
   def price
-    content.scan(/[a]/m).size.to_f / 100
+    (content.scan(/[a]/m).size.to_f / 100).round(2)
   end
 
   private

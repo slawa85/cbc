@@ -11,4 +11,9 @@ class Country < AbstractModel
     t.add :location_groups
     t.add :panel_provider
   end
+
+  api_accessible :v1_target_groups  do |t|
+    t.add :code
+    t.add :target_groups, template: :v1_default
+  end
 end

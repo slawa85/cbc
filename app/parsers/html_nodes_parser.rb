@@ -2,7 +2,7 @@ class HtmlNodesParser < Parser
   SOURCE_URL = 'http://time.com/'
 
   def price
-    content.enum_for(:traverse).count.to_f / 100
+    (content.enum_for(:traverse).count.to_f / 100).round(2)
   end
 
   private

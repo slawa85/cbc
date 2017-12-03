@@ -5,17 +5,22 @@ module V1
     before_action :validate_params
     before_action :fetch_country
 
+    def index
+      respond_with_resource do
+        respond_with @country
+      end
+    end
+
     def show
-      respond_with @country
-    rescue Parser::Error
-      msg = 'Unable to calculate price, please try again later'
-      respond_with_error msg: msg, status: 400
+      respond_with_resource do
+        respond_with @country
+      end
     end
 
     private
 
       def validate_params
-        if CountryCodeValidation.call(content: params[:country_code]).failure?
+        if CountryCodeValidator.call(content: params[:country_code]).failure?
           message = "#{params[:country_code]} wrong param format only valid country code allowed"
           fail ActionController::ParameterMissing.new(message)
         end

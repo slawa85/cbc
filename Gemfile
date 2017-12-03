@@ -20,7 +20,7 @@ gem 'nokogiri'
 gem 'sanitize'
 
 group :development, :test do
-  gem 'pry'
+  gem 'pry-byebug'
   gem 'pry-rails'
   # pry dependencies
   gem 'rb-readline'

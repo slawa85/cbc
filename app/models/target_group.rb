@@ -10,6 +10,10 @@ class TargetGroup < AbstractModel
   api_accessible :v1_default do |t|
     t.add :id
     t.add :name
+    t.add :sub_groups
   end
 
+  api_accessible :v1_panel_provider do |t|
+    t.add :panel_provider, template: :v1_default
+  end
 end
