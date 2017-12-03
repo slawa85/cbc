@@ -1,5 +1,7 @@
 # How To
 
+Here you can try live tests [https://cbc-api.herokuapp.com/v1/](https://cbc-api.herokuapp.com/v1/)
+
 **This application is using PostgreSql, in order to test it please make sure you have installed PostreSQL
 
 * run `git clone git@github.com:slawa85/cbc.git`
