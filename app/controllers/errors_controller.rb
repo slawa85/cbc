@@ -1,5 +1,4 @@
 class ErrorsController < ::ApplicationController
-  include ApiResponder
 
   def show
     e = request.env['action_dispatch.exception']
