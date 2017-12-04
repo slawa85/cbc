@@ -39,6 +39,8 @@ GEM
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       rack (>= 1.1.0)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     airborne (0.2.13)
       activesupport
       rack
@@ -52,6 +54,8 @@ GEM
     byebug (8.2.4)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.3)
     devise (4.3.0)
       bcrypt (~> 3.0)
@@ -93,6 +97,7 @@ GEM
     erubis (2.7.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    hashdiff (0.3.7)
     http-accept (1.4.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -132,6 +137,7 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
+    public_suffix (3.0.1)
     puma (3.11.0)
     rack (1.6.8)
     rack-test (0.6.3)
@@ -203,6 +209,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.9.0)
+    safe_yaml (1.0.4)
     sanitize (4.5.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -232,6 +239,10 @@ GEM
       dry-configurable (~> 0.5)
       jwt (~> 2.1)
       warden (~> 1.2)
+    webmock (3.1.1)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
 
 PLATFORMS
   ruby
@@ -257,6 +268,7 @@ DEPENDENCIES
   sanitize
   spring
   sqlite3
+  webmock
 
 BUNDLED WITH
    1.16.0

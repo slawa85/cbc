@@ -21,7 +21,7 @@ module V1
 
       def validate_params
         if CountryCodeValidator.call(content: params[:country_code]).failure?
-          message = "#{params[:country_code]} wrong param format only valid country code allowed"
+          message = "wrong param format only valid country code allowed"
           fail ActionController::ParameterMissing.new(message)
         end
       end

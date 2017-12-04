@@ -35,4 +35,5 @@ end
 group :test do
   gem 'airborne'
   gem 'rspec-rails'
+  gem 'webmock'
 end

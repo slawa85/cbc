@@ -16,7 +16,7 @@ def result
 end
 
 def auth_for(user)
-  @auth_header = { Authorization: "Bearer #{Warden::JWTAuth::UserEncoder.new.call(user, :user)}" }
+  @token = "Bearer #{Warden::JWTAuth::UserEncoder.new.call(user, :user)}"
 end
 
 def with_auth(expect_200: true, expect_401: true)
@@ -26,7 +26,7 @@ def with_auth(expect_200: true, expect_401: true)
     expect_json('error.message', 'You need to sign in or sign up before continuing.')
   end
 
-  yield({ headers: @auth_header })
+  yield({ 'Authorization' => @token })
   if expect_200
     if response.status != 200
       debug_response
@@ -34,10 +34,5 @@ def with_auth(expect_200: true, expect_401: true)
 
     expect_status(200)
   end
-end
-
-def expect_json_scheme(path, scheme)
-  expect_json_types(path, scheme)
-  expect_json_keys(path, scheme.keys)
 end
 
